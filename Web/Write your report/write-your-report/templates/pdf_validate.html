@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="form-section">
+  <div class="form-container dark-card">
+    <h2>PDF Validate</h2>
+    {% if result %}<p class="info">{{ result }}</p>{% endif %}
+    <form method="POST" enctype="multipart/form-data">
+      <label>Upload PDF</label>
+      <input type="file" name="pdf" accept="application/pdf" required>
+      <button type="submit" class="btn btn-secondary">Validate</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,8 @@
+# Dirsearch started Tue May 27 05:33:32 2025 as: /usr/lib/python3/dist-packages/dirsearch/dirsearch.py -u http://redteamer.uz/
+
+200     1KB  http://redteamer.uz/contact
+302   199B   http://redteamer.uz/dashboard    -> REDIRECTS TO: /login
+200     1KB  http://redteamer.uz/login
+302   189B   http://redteamer.uz/logout    -> REDIRECTS TO: /
+302   199B   http://redteamer.uz/reports    -> REDIRECTS TO: /login
+302   199B   http://redteamer.uz/users    -> REDIRECTS TO: /login

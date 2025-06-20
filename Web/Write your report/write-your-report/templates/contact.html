@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="form-section">
+  <div class="form-container dark-card">
+    <h2>Contact Us</h2>
+    {% if success %}<p class="success">Submitted!</p>{% endif %}
+    <form method="POST">
+      <label>Email</label>
+      <input type="email" name="email" required>
+      <label>Message</label>
+      <textarea name="message" rows="4" required></textarea>
+      <button type="submit" class="btn btn-secondary">Send</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

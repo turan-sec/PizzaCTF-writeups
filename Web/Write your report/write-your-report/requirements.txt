@@ -1,0 +1,4 @@
+Flask==2.0.3
+Werkzeug<3.0
+python-docx==0.8.11
+pdfkit==1.0.0

@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section style="padding:2rem; max-width:400px; margin:auto;">
+  <h1>Edit “{{ user.username }}”</h1>
+  <form method="post" action="{{ url_for('update_user', uid=user.id) }}">
+    <div class="field-group">
+      <label for="role">Role</label>
+      <select name="role" id="role" style="width:100%; padding:.5rem; border-radius:4px; margin-bottom:1rem;">
+        <option value="manager"  {% if user.role=='manager' %}selected{% endif %}>Manager</option>
+        <option value="pentester" {% if user.role=='pentester' %}selected{% endif %}>Pentester</option>
+        <option value="teamlead"  {% if user.role=='teamlead' %}selected{% endif %}>Teamlead</option>
+        {# we intentionally omit “moderator” here #}
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+  </form>
+</section>
+{% endblock %}

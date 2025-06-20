@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="hero">
+  <div class="hero-text">
+    <h1>Report Writing Platform</h1>
+    <p>Your centralized hub for secure penetration testing reports.</p>
+    {% if session.get('user') %}
+      <a href="/dashboard" class="btn btn-primary">Go to Dashboard</a>
+    {% else %}
+      <a href="/login" class="btn btn-primary">Login</a>
+    {% endif %}
+  </div>
+  <div class="hero-graphic"></div>
+</section>
+{% endblock %}

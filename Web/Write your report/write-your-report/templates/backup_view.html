@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section style="padding:2rem;">
+  <h1>Viewing: {{ request.args.get('file') }}</h1>
+  <div style="background:var(--card-bg); padding:1rem; border-radius:8px; overflow:auto; max-height:80vh;">
+    <pre style="white-space:pre-wrap; word-wrap:break-word; color:var(--fg);"><code>{{ code|e }}</code></pre>
+  </div>
+</section>
+{% endblock %}

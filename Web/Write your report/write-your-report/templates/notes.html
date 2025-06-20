@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<section class="section-bg" style="min-height: calc(100vh - 56px); padding-top:56px;">
+  <div class="container" style="max-width:600px; margin:2rem auto; color:var(--fg);">
+    <h1>Team-Lead Notes</h1>
+    <p>This page is visible only to <strong>teamlead</strong> users.</p>
+    <textarea rows="10" style="width:100%; background:var(--section-bg); border:1px solid #585b70; border-radius:4px; padding:0.5rem; color:var(--fg);" placeholder="Your notes here…">{{ note }}</textarea>
+    <button class="btn btn-primary" style="margin-top:1rem;">Save Notes</button>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="file-manager">
+  <h1>Backup Files</h1>
+  <ul>
+    {% for file in files %}
+      <li>
+        <a href="{{ url_for('backup_view') }}?file={{ file }}">
+          {{ file }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

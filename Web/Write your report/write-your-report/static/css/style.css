@@ -1,0 +1,356 @@
+:root {
+  --bg: #0d0e1b;
+  --fg: #e0def4;
+  --accent: #89b4fa;
+  --accent2: #f5c2e7;
+  --card-bg: #11111b;
+  --section-bg: #1e1e2e;
+}
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding: 0 2rem;
+  background: rgba(13,14,27,0.6);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+.nav-brand { font-size: 1.5rem; color: var(--accent); }
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+.nav-menu a { color: var(--fg); text-decoration: none; transition: color .2s; }
+.nav-menu a:hover { color: var(--accent); }
+#theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--fg);
+}
+
+/* Hero (full viewport) */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  padding: 4rem;
+  padding-top: calc(4rem + 56px);
+  background-image: url('/static/img/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  color: var(--fg);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom right,
+    rgba(13,14,27,0.6), rgba(30,30,46,0.6));
+}
+.hero-text {
+  position: relative;
+  z-index: 1;
+  max-width: 50%;
+}
+.hero-text h1 { font-size: 3rem; margin-bottom: 1rem; }
+.hero-text p { font-size: 1.1rem; margin-bottom: 2rem; }
+
+/* Login Page Centering */
+.form-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--section-bg);
+  min-height: calc(100vh - 56px);
+  padding-top: 56px;
+}
+
+/* Form Container */
+.form-container {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* Buttons */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform .2s;
+  background: rgba(0,0,0,0.6);
+  color: var(--fg);
+  border: none;
+}
+.btn:hover { transform: scale(1.05); }
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Make labels sit above inputs */
+.form-container .field-group label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+/* Uniform input sizing */
+.form-container .field-group input {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0 0.75rem;
+  background: var(--section-bg);
+  border: 1px solid #585b70;
+  border-radius: 4px;
+  color: var(--fg);
+}
+
+/* Buttons */
+.form-container > form:nth-child(2) > input:nth-child(2) {
+  padding: 0.75rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform .2s;
+  background: rgba(0,0,0,0.6);
+  color: var(--fg);
+  border: none;
+}
+
+.form-container > form:nth-child(3) > input:nth-child(2) {
+  padding: 0.75rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform .2s;
+  background: rgba(0,0,0,0.6);
+  color: var(--fg);
+  border: none;
+}
+
+.form-container > form:nth-child(2) > textarea:nth-child(4) {
+  padding: 0.75rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform .2s;
+  background: rgba(0,0,0,0.6);
+  color: var(--fg);
+  border: none;
+}
+
+.form-container > form:nth-child(3) > textarea:nth-child(4) {
+  padding: 0.75rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform .2s;
+  background: rgba(0,0,0,0.6);
+  color: var(--fg);
+  border: none;
+}
+
+.btn:hover { transform: scale(1.05); }
+
+
+/* ─────────────────────────────────────────────────────────────────
+   Global layout: navbar → main → footer
+───────────────────────────────────────────────────────────────── */
+html, body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main {
+  flex: 1;               /* take all space between header & footer */
+  margin-top: 56px;      /* push content below the absolute navbar */
+}
+footer {
+  margin-top: auto;      /* stick footer to bottom */
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Dashboard grid tweaks
+───────────────────────────────────────────────────────────────── */
+#dashboard-cards {
+  padding:   2rem;
+  gap:       2rem;
+  /* ensure cards fit nicely without overlap */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.form-container > h2:nth-child(1) > form:nth-child(1) > input:nth-child(2) {
+  padding: 0.75rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform .2s;
+  background: rgba(0,0,0,0.6);
+  color: var(--fg);
+  border: none;
+}
+
+.form-container > h2:nth-child(1) > form:nth-child(1) > textarea:nth-child(4) {
+  padding: 0.75rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform .2s;
+  background: rgba(0,0,0,0.6);
+  color: var(--fg);
+  border: none;
+}
+
+/* ─── Reports List as Vertical “Cards” ─── */
+#reports-table {
+  width: 100%;
+  margin-top: 2rem;
+  border-collapse: collapse;
+}
+
+/* hide the column headers */
+#reports-table thead {
+  display: none;
+}
+
+/* turn each <tr> into its own card */
+#reports-table tbody tr {
+  display: block;
+  background: var(--card-bg);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
+/* stack each <td> on its own line */
+#reports-table tbody td {
+  display: block;
+  padding: 0.25rem 0;
+  font-size: 0.95rem;
+  /* optional: label them for clarity */
+  position: relative;
+}
+#reports-table tbody td:nth-child(1)::before { content: "ID: "; font-weight:600; color:var(--accent2);}
+#reports-table tbody td:nth-child(2)::before { content: "Author: "; font-weight:600; color:var(--accent2);}
+#reports-table tbody td:nth-child(3)::before { content: "Title: "; font-weight:600; color:var(--accent2);}
+#reports-table tbody td:nth-child(4)::before { content: "Date: "; font-weight:600; color:var(--accent2);}
+
+/* responsive tweak: full-width on narrow screens */
+@media (max-width: 600px) {
+  #reports-table tbody tr {
+    padding: 0.75rem;
+  }
+}
+
+/* --- File-Manager UI on Backup Page --- */
+.file-manager {
+  background: var(--section-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 2rem auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.file-manager h1 {
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+  color: var(--fg);
+}
+.file-manager ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.file-manager li {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #313244;
+}
+.file-manager li:last-child {
+  border-bottom: none;
+}
+.file-manager a {
+  color: var(--fg);
+  text-decoration: none;
+  display: block;
+  transition: background 0.2s;
+}
+.file-manager a:hover {
+  background: rgba(136,180,250,0.1);
+}
+
+/* ------------ users table styling ------------ */
+.table-wrapper {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+/* set full width and collapse borders */
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* header row */
+.users-table thead {
+  background: rgba(13,14,27,0.8);
+}
+.users-table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+/* body rows */
+.users-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #313244;
+  color: var(--fg);
+}
+
+/* hover highlight */
+.users-table tbody tr:hover {
+  background: rgba(136,180,250,0.1);
+}
+
+/* tighten up last-row border */
+.users-table tbody tr:last-child td {
+  border-bottom: none;
+}

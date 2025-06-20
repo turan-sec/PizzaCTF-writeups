@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="form-section">
+  <div class="form-container dark-card">
+    <h2>New Report</n2>
+    <form method="POST">
+      <label>Title</label>
+      <input type="text" name="title" required>
+      <label>Content</label>
+      <textarea name="content" rows="6" required></textarea>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</section>
+{% endblock %}
