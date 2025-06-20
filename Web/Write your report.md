@@ -40,9 +40,9 @@ INSERT INTO contacts (email, message) VALUES ('test@gmail.com', 'test yozuv');
 ```
 Bu degani bizda Challenge ichida Challenge, VALUES () ni ichidan escape qilish kerak, oddiy boshqa DBMS lardagiga o'xshab escapge qilishga harakat qildim:
 ```
-INSERT INTO contacts (email, message) VALUES ('test@gmail.com', '1'-- - ', 'test yozuv');
+INSERT INTO contacts (email, message) VALUES ('test@gmail.com', '1')-- - ', 'test yozuv');
 ```
-Maqsad VALUESdagi ') ni yopishimiz kerak, ```', '1'-- - ``` shu uchun kerak oldingi Quoteni yopib, ikkinchi columnga o'zimizni 1 ni kiritib undan keyingi yozuvni Commentga olish. Lekin baribir o'xshamadi, ohiri ) ni yopish o'rniga VALUES () ni ichida Substringga o'xshash Query ishlatish yo'li chiqib qoldi:
+Maqsad VALUESdagi ') ni yopishimiz kerak, ```', '1')-- - ``` shu uchun kerak oldingi Quoteni yopib, ikkinchi columnga o'zimizni 1 ni kiritib undan keyingi yozuvni Commentga olish. Lekin baribir o'xshamadi, ohiri ) ni yopish o'rniga VALUES () ni ichida Substringga o'xshash Query ishlatish yo'li chiqib qoldi:
 
 ```
 '||1||'
@@ -100,5 +100,51 @@ shu bilan columnlarni birma-bir fuzz qilsak bo'ladi.
 ![image](https://github.com/user-attachments/assets/11001d6b-abed-4b6d-a714-394397ae3c44)
 
 6) Lekin bu login va parol bilan kirishni iloji yo'q, dump qilingan user bilan rolega qaraydigan bo'lsak "appsechi" user uchun manager role berilgan, lekin bizda pmanager degan user bor, parolni boshqa userlarga sinab ko'rish kerak..
+
+
+7) pmanager user uchun crack qilingan "joyland1" parolini ishlatib login qilsak bo'ladi:
+
+![image](https://github.com/user-attachments/assets/f8242f9b-1605-4937-ad28-91e6a9d0a39f)
+
+8) User uchun yangi page "reports" ochiqligini ko'rsak bo'ladi, reportda Demo report ko'rsatilgan:
+
+![image](https://github.com/user-attachments/assets/74c33698-d984-4d78-974f-50531cdd8709)
+
+9) Report ichida yangi login parollarni topish mumkin, ularni oldingi hamma topilgan user bilan parollar ro'yxatiga qo'shamiz:
+
+![image](https://github.com/user-attachments/assets/2125f34a-f26e-40a1-82aa-3111bc9f4a23)
+
+hamma topilgan userlar ro'yxati:
+![image](https://github.com/user-attachments/assets/d5db4c19-3396-4a44-b250-b502208c282a)
+
+hamma topilgan parollar ro'yxati:
+![image](https://github.com/user-attachments/assets/59e43a19-ba6e-465f-89b0-810e8244697f)
+
+10) Loginda hamma user uchun yangi topilgan parolni Brute force qilamiz, topilgan parol "appsecchi" user uchun to'g'ri keladi:
+
+![image](https://github.com/user-attachments/assets/b3fa4f4b-1570-4ad6-8df2-7d70a0837191)
+
+Aslida brute force qilishni keragi yo'q, demak platforma pentest reportlar saqlash yoki yozish uchun foydalaniladi, bu tizimdan Manager, Pentester, Team Lead pentester, Moderator foydalanadi. Biz topgan Demo reportni "appsecchi" yuklagani ko'rishimiz mumkin, bu degani parol unga tegishli:
+
+![image](https://github.com/user-attachments/assets/a509bbf4-82a7-4c0d-8d5a-b8682bfe154d)
+
+11) "Appsecchi" user yordamida kirilgan yangi feature qo'shiladi:
+
+![image](https://github.com/user-attachments/assets/4bfb6c62-c2bf-4d2f-a8d4-2e6b82d5ea53)
+
+12) "New report" feature orqali yangi report title va text qo'shish mumkin, title boshqa userlarga ko'rinadi, demak taxminan XSS bor, SQLi uchun tekshirishdan foyda yo'q, allaqachon bazaga kirib bo'lganmiz:
+```
+<img src="http://bcrixlo3qcxq8wpr5x0vysnqchi86zuo.oastify.com/test.html" />
+```
+
+![image](https://github.com/user-attachments/assets/de844878-cecc-45c4-ab9d-e9409a41f7d0)
+
+13) Burp Collaboratorda XSS uchun payload ishga tushganini ko'rsak bo'ladi:
+
+![image](https://github.com/user-attachments/assets/4c720c9c-ddbe-4c4f-8579-2d0b7dcdcb42)
+
+Lekin XSS orqali cookie ololmaymiz:
+![image](https://github.com/user-attachments/assets/09ad1557-ab6b-4f4d-bf07-e58577511a14)
+
 
 
