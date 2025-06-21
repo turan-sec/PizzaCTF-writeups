@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>📚 Bookstore Admin Panel</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f3f1ec;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .admin-card {
+      max-width: 600px;
+      margin: 100px auto;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      border: none;
+      border-radius: 12px;
+    }
+    .admin-header {
+      background-color: #5d3b09;
+      color: white;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+    .btn-custom {
+      background-color: #5d3b09;
+      color: white;
+    }
+    .btn-custom:hover {
+      background-color: #7a4f0f;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card admin-card">
+    <div class="card-header admin-header text-center py-4">
+      <h2>📚 Bookstore Admin Panel</h2>
+      <p class="mb-0">Welcome, <strong><%= user.username %></strong>!</p>
+    </div>
+    <div class="card-body text-center">
+      <p>You have full access to manage store content.</p>
+      <a href="/pdf" class="btn btn-custom me-2">🧾 Generate Inventory PDF</a>
+      <a href="/login" class="btn btn-outline-secondary">🔒 Logout</a>
+    </div>
+  </div>
+
+</body>
+</html>
