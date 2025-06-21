@@ -1,5 +1,15 @@
 # RACE GROUP
 
+## Challenge info
+
+```text
+Level: Easy
+Category: Web
+
+Tavsif:
+```
+
+## Solution
 Birinchi navbatda biz login web sahifasiga kiramiz\|  
   
 ![image.png](<./attachments/3bb97f05deb7aa1b-image.png>)
